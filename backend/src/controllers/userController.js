@@ -2,11 +2,9 @@ import users from "../models/User.js";
 
 class UserController {
 
-
-
-
-
-
+  
+  
+  
   static updateUser = (req, res) => {
     const {id} = req.params;
 
@@ -33,3 +31,4 @@ class UserController {
 }
 
 export default UserController;
+
