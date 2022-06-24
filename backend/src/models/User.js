@@ -18,6 +18,37 @@ const userSchema = new mongoose.Schema({
     versionKey: false
 })
 
+userSchema.methods.isValid = function() {
+    return validateCPF(this.cpf) &&
+        validatePassword(this.password) &&
+        validateEmail(this.email) &&
+        validateAge(this.birthDate)
+}
+
+function validateCPF(cpf) {
+    let cpfLength = cpf.replace(/\.|\-/g, '').length
+    return /[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?\.?[0-9]{2}/g.test(cpf) && cpfLength == 11
+}
+
+function validateEmail(email) {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
+}
+
+function validatePassword(password) {
+    return password.length >= 6
+}
+
+function validateAge(birthDate) {
+    let today = new Date()
+    birthDate = new Date(birthDate)
+    let age = today.getFullYear() - birthDate.getFullYear()
+    if (today.getMonth() < birthDate.getMonth() ||
+        today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate()) {
+        age--
+    }
+    return age >= 18
+}
+
 const users = mongoose.model("users", userSchema)
 
 export default users;
