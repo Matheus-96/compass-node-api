@@ -7,7 +7,6 @@ class UserController {
 
         if (user.isValid()) {
             user.save((err) => {
-
                 if (err) {
                     res.status(500).send({ message: `${err.message} - Failed to create user.` })
                 } else {
