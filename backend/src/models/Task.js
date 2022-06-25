@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import users from "./User.js";
 
 const taskSchema = new mongoose.Schema({
     id: { type: String },
@@ -8,6 +9,20 @@ const taskSchema = new mongoose.Schema({
 }, {
     versionKey: false
 })
+
+taskSchema.methods.isValid = async function() {
+    return await validateUser(this.user) &&
+        validateDate(this.date)
+}
+
+async function validateUser(user) {
+    return (await users.findById(user)) ? true : false
+}
+
+function validateDate(date) {
+    date = new Date(date)
+    return date > Date.now()
+}
 
 const tasks = mongoose.model("tasks", taskSchema)
 
