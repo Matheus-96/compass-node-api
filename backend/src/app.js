@@ -9,7 +9,11 @@ db.once("open", () => {
 })
 
 const app = express();
-app.use(express.json(), cors())
+app.use(
+    express.json(),
+    express.urlencoded({ extended: true }),
+    cors()
+)
 routes(app);
 
 export default app
