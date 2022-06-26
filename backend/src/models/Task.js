@@ -11,17 +11,19 @@ const taskSchema = new mongoose.Schema({
 })
 
 taskSchema.methods.isValid = async function() {
-    return await validateUser(this.user) &&
-        validateDate(this.date)
+    let errorArray = [await validateUser(this.user), validateDate(this.date)]
+        .filter(el => el != true)
+    let validation = { ok: errorArray.length == 0, errors: errorArray }
+    return validation
 }
 
 async function validateUser(user) {
-    return (await users.findById(user)) ? true : false
+    return await users.findById(user) ? true : 'User does not exist'
 }
 
 function validateDate(date) {
     date = new Date(date)
-    return date > Date.now()
+    return date > Date.now() ? true : 'Date should be higher than now'
 }
 
 const tasks = mongoose.model("tasks", taskSchema)
