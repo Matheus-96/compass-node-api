@@ -19,23 +19,27 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.methods.isValid = function() {
-    return validateCPF(this.cpf) &&
-        validatePassword(this.password) &&
-        validateEmail(this.email) &&
+    let errorArray = [
+        validateCPF(this.cpf),
+        validatePassword(this.password),
+        validateEmail(this.email),
         validateAge(this.birthDate)
+    ].filter(el => el != true)
+    let validation = { ok: errorArray.length == 0, errors: errorArray }
+    return validation
 }
 
 function validateCPF(cpf) {
     let cpfLength = cpf.replace(/\.|\-/g, '').length
-    return /[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?\.?[0-9]{2}/g.test(cpf) && cpfLength == 11
+    return /[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?\.?[0-9]{2}/g.test(cpf) && cpfLength == 11 ? true : "Invalid CPF"
 }
 
 function validateEmail(email) {
-    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email) ? true : "Invalid email"
 }
 
 function validatePassword(password) {
-    return password.length >= 6
+    return password.length >= 6 ? true : 'Invalid Password'
 }
 
 function validateAge(birthDate) {
@@ -46,7 +50,7 @@ function validateAge(birthDate) {
         today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate()) {
         age--
     }
-    return age >= 18
+    return age >= 18 ? true : 'Age must be higher than 18'
 }
 
 const users = mongoose.model("users", userSchema)

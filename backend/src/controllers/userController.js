@@ -4,8 +4,8 @@ class UserController {
 
     static createUser = (req, res) => {
         let user = new users(req.body);
-
-        if (user.isValid()) {
+        let validation = user.isValid()
+        if (validation.ok) {
             user.save((err) => {
                 if (err) {
                     res.status(500).send({ message: `${err.message} - Failed to create user.` })
@@ -14,7 +14,10 @@ class UserController {
                 }
             })
         } else {
-            res.status(400).send({ message: `Failed to create user. Validation Error.` })
+            res.status(400).send({
+                error: "Validation error",
+                message: validation.errors
+            })
         }
     }
 
