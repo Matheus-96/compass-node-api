@@ -83,15 +83,15 @@ function validatePassword(password) {
     return password.length >= 6 ? true : 'password'
 }
 
-function validateAge(birthDate) {
+function validateAge(date) {
     let today = new Date()
-    birthDate = new Date(birthDate)
+    let birthDate = new Date(date)
     let age = today.getFullYear() - birthDate.getFullYear()
     if (today.getMonth() < birthDate.getMonth() ||
         today.getMonth() == birthDate.getMonth() && today.getDate() < birthDate.getDate()) {
         age--
     }
-    return age >= 18 ? true : 'birthDate'
+    return age >= 18 && date != null ? true : 'birthDate'
 }
 
 const users = mongoose.model("users", userSchema)
