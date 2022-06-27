@@ -5,7 +5,6 @@ const router = express.Router();
 
 router
     .get("/api/v1/tasks", TaskController.listTask)
-// .get("/api/v1/tasks/search", TaskController.listTaskByCPF)
     .get("/api/v1/tasks/:id", TaskController.listTaskById)
     .post("/api/v1/tasks", TaskController.createTask)
     // .put("/api/v1/tasks/:id", TaskController.updateTask)
