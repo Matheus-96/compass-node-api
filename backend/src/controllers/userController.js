@@ -25,8 +25,9 @@ class UserController {
     static updateUser = (req, res) => {
         const { id } = req.params;
         let user = new users(req.body);
+        let validation = user.isValid();
 
-        if (user.isValid()) {
+        if (validation.ok) {
             users.findByIdAndUpdate(id, { $set: req.body }, (err) => {
                 if (!err) {
                     res.status(200).send({ message: `User (${id}) was successfully updated.` })
@@ -35,7 +36,7 @@ class UserController {
                 }
             })
         } else {
-            res.status(400).send({ message: `Failed to update user. Validation Error.` })
+            res.status(400).send({ error: `Validation Error.`, message: validation.errors })
         }
     }
 
@@ -55,20 +56,20 @@ class UserController {
         users.find((err, users) => {
             res.status(200).json(users)
 
-    })
-}
-    static listUserById =(req,res) =>{
-        const id = req.params.id;
-        users.findById(id,(err,users)=>{
-        if(err){
-            res.status(404).send({message:`${err.message}- user id not found! `})
-        }else{
-            res.status(200).send(users);
-        }
-
+        })
     }
-    )
-}
+    static listUserById = (req, res) => {
+        const id = req.params.id;
+        users.findById(id, (err, users) => {
+            if (err) {
+                res.status(404).send({ message: `${err.message}- user id not found! ` })
+            } else {
+                res.status(200).send(users);
+            }
+
+        }
+        )
+    }
 
 }
 
