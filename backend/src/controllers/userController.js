@@ -24,14 +24,19 @@ class UserController {
 
     static updateUser = (req, res) => {
         const { id } = req.params;
+        let user = new users(req.body);
 
-        users.findByIdAndUpdate(id, { $set: req.body }, (err) => {
-            if (!err) {
-                res.status(200).send({ message: `User (${id}) was successfully updated.` })
-            } else {
-                res.status(404).send({ message: `User (${id}) was not found. ${err.message}` })
-            }
-        })
+        if (user.isValid()) {
+            users.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+                if (!err) {
+                    res.status(200).send({ message: `User (${id}) was successfully updated.` })
+                } else {
+                    res.status(404).send({ message: `User (${id}) was not found. ${err.message}` })
+                }
+            })
+        } else {
+            res.status(400).send({ message: `Failed to update user. Validation Error.` })
+        }
     }
 
     static deleteUser = (req, res) => {
