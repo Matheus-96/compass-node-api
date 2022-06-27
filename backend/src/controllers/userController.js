@@ -52,7 +52,7 @@ class UserController {
         })
     }
 
-    static listUsers = (req, res) => {
+    static listUser = (req, res) =>{
         users.find((err, users) => {
             res.status(200).json(users)
 
