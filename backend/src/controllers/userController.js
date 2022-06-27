@@ -30,13 +30,13 @@ class UserController {
         if (validation.ok) {
             users.findByIdAndUpdate(id, { $set: req.body }, (err) => {
                 if (!err) {
-                    res.status(200).send({ message: `User (${id}) was successfully updated. ${validation.errors.length}` })
+                    res.status(200).send({ message: `User (${id}) was successfully updated. ${validation.errors}` })
                 } else {
                     res.status(404).send({ message: `User (${id}) was not found. ${err.message}` })
                 }
             })
         } else {
-            res.status(400).send({ error: `Validation Error.`, message: validation.errors.length })
+            res.status(400).send({ error: `Validation Error.`, message: validation.errors })
         }
     }
 
