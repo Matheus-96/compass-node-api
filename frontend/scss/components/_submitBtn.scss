@@ -1,0 +1,17 @@
+@import '../variables';
+.btn {
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    border-radius: 4px;
+    color: white;
+    background-color: $backgroundPrimary;
+    border: none;
+    outline: none;
+    &:hover {
+        background-color: $backgroundPrimary-hover;
+    }
+    &:active {
+        background-color: $backgroundPrimary-click;
+    }
+}
