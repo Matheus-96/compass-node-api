@@ -41,7 +41,7 @@ class TaskController {
         let validation = await task.isValid();
 
         if (validation.ok) {
-            tasks.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+            await tasks.findByIdAndUpdate(id, { $set: req.body }, (err) => {
                 if (!err) {
                     res.status(200).send({ message: `Task (${id}) was successfully updated.` })
                 } else {
@@ -49,7 +49,7 @@ class TaskController {
                 }
             })
         } else {
-            res.status(400).send({ error: `Validation Error.`, message: `${validation.errors}` })
+            res.status(400).send({ error: `Validation Error.`, message: validation.errors })
         }
     }
 
