@@ -21,11 +21,12 @@ taskSchema.methods.isValid = async function () {
 }
 
 async function validateUser(user) {
-    return await users.findById(user) ? true : 'user';
+    console.log(user);
+    return await users.findById(user) ? true : 'user'
 }
 
 async function validateDescription(description) {
-    return description.length > 0 ? true : 'description';
+    return description.length > 0 ? true : 'description'
 }
 
 function validateDate(date) {
