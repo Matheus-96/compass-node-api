@@ -17,6 +17,27 @@ class TaskController {
             res.status(400).send({ error: 'Validation error', message: validation.errors })
         }
     }
+
+    static listTask = (req, res) =>{
+        tasks.find((err, tasks) => {
+            res.status(200).json(tasks)
+
+    })
 }
+    static listTaskById =(req,res) =>{
+        const id = req.params.id;
+        tasks.findById(id,(err,tasks)=>{
+        if(err){
+            res.status(404).send({message:`${err.message}- task id not found! `})
+        }else{
+            res.status(200).send(tasks);
+        }
+    }
+    )
+}
+
+}
+
+
 
 export default TaskController;
