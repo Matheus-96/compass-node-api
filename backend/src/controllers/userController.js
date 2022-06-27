@@ -30,13 +30,13 @@ class UserController {
         if (validation.ok) {
             users.findByIdAndUpdate(id, { $set: req.body }, (err) => {
                 if (!err) {
-                    res.status(200).send({ message: `User (${id}) was successfully updated.` })
+                    res.status(200).send({ message: `User (${id}) was successfully updated. ${validation.errors.length}` })
                 } else {
                     res.status(404).send({ message: `User (${id}) was not found. ${err.message}` })
                 }
             })
         } else {
-            res.status(400).send({ error: `Validation Error.`, message: validation.errors })
+            res.status(400).send({ error: `Validation Error.`, message: validation.errors.length })
         }
     }
 
@@ -52,7 +52,7 @@ class UserController {
         })
     }
 
-    static listUser = (req, res) =>{
+    static listUser = (req, res) => {
         users.find((err, users) => {
             res.status(200).json(users)
 
