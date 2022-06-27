@@ -1,0 +1,16 @@
+{
+  "include": [
+    "frontend/ts/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "ES2015",
+    "sourceMap": true,
+    "outDir": "./frontend/public/js",
+    "strictNullChecks": true,
+  }
+}
