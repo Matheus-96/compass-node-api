@@ -4,7 +4,7 @@ var containerUsers = document.querySelector('.container-users') as HTMLDivElemen
 //Event listener para quando finalizar carregamento da pagina
 window.addEventListener('load', async () => {
     await getUsers()
-    updateCards(0)
+    updateCards('0')
     updateButtons()
 
 })
@@ -90,7 +90,6 @@ function updateButtons() {
     let footer = document.querySelector('footer')
     if(footer){
         footer.innerHTML = ''
-        console.log(users.length);
                 
         for (let x = 0; x < users.length; x++) {
             let b = document.createElement('button') as HTMLButtonElement
