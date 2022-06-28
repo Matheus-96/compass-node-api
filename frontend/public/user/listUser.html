@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+
+    <div class="modal invisible" id="modal" data-active="false">
+        <div class="modal-head">
+            <h2>Register user</h2>
+            <div class="modal-btn">
+                <button class='close'>X</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="content-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="96px" height="96px"><path fill="#c8e6c9" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"/><path fill="#4caf50" d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"/></svg>
+                </div>
+                <p class="content-text">
+                    User succesfully created.
+                </p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn close">Close</button>
+                <a href="./listUsers.html"><button class="btn">View users</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container create-user">
+        <header class="header">
+            <h1 class="heading">List Users</h1>
+        </header>
+        <main class="main">
+            <div class="container-users">
+
+            </div>
+        </main>
+        <footer class="footer">
+
+        </footer>
+    </div>
+    <script src="../js/users/listUser.js" type="module"></script>
+</body>
+
+</html>

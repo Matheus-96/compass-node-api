@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import users from "../models/User.js";
 
 class UserController {
@@ -52,9 +53,19 @@ class UserController {
         })
     }
 
-    static listUser = (req, res) =>{
+    static listUser = (req, res) => {
         users.find((err, users) => {
-            res.status(200).json(users)
+            let x = 0
+            let paginated = []
+
+            while (users.length > 1) {
+                if (users.length >= 5)
+                    paginated[x] = [...users.splice(0, 5)]
+                else
+                    paginated[x] = [...users.splice(0, users.length)]
+                x++
+            }
+            res.status(200).json(paginated)
 
         })
     }
@@ -67,13 +78,9 @@ class UserController {
                 res.status(200).send(users);
             }
 
-        }
-        )
+        })
     }
 
 }
 
 export default UserController;
-
-
-
