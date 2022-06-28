@@ -1,3 +1,5 @@
+import { initModal, toggleModal } from "../common/modal.js"
+
 var tasks: Array<Object>
 var containerTasks = document.querySelector('.container-tasks') as HTMLDivElement
 
@@ -6,7 +8,7 @@ window.addEventListener('load', async () => {
   await getTasks()
   updateTaskCards(0)
   updateTaskButtons()
-
+  initModal('modal')
 })
 
 document.querySelector('.footer')?.addEventListener('click', (event) => {
@@ -16,6 +18,27 @@ document.querySelector('.footer')?.addEventListener('click', (event) => {
     let page = clickedElement.dataset.page!
 
     updateTaskCards(page)
+  }
+})
+
+containerTasks.addEventListener('click', event => {
+  let target = event.target as HTMLElement
+  
+  if (target.classList.contains('deleteBtn')) {
+      let deleteId = document.querySelector('#deleteId') as HTMLInputElement
+      let id = target.dataset.id
+      if (id) deleteId.value = id
+      toggleModal('modal')
+
+  }
+})
+
+document.querySelector('.modal')?.addEventListener('click', event => {
+  let target = event.target as HTMLElement
+  if(target.classList.contains('delete')){
+      let idInput = document.querySelector('#deleteId') as HTMLInputElement
+      let id = idInput.value
+      deleteTask(id)
   }
 })
 
@@ -38,7 +61,7 @@ async function updateTaskCards(page: string) {
 
 function createTaskCard(task: Object) {
   return `
-<a href='./listTaskId.html?id=${task['_id']}'
+
     <div class="card">
     <div class="">
         <label for="">Description</label>
@@ -57,8 +80,22 @@ function createTaskCard(task: Object) {
         ${task['date']}
         </p>
     </div>
+<div class="">
+<p>
+    <a href='./listTaskId.html?id=${task['_id']}'><button class="btn top">Edit</button></a>
+</p>
+<p>
+    <button class="btn bottom deleteBtn" data-id='${task['_id']}'>Delete</button>
+</p>
 </div>
-</a>`
+</div>
+
+`
+}
+
+async function deleteTask(id: string) {
+  let response = await fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`, { method: 'DELETE' })
+  tasks = await response.json()
 }
 
 function updateTaskButtons() {
