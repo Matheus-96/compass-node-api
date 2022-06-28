@@ -71,7 +71,7 @@ function createTaskCard(task: Object) {
         <div class="div"></div>
         <label for="">User</label>
         <p class="user">
-        ${task['user']}
+        ${task['user'].name}
         </p>
     </div>
     <div class="">

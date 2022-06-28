@@ -58,7 +58,7 @@ class UserController {
             let x = 0
             let paginated = []
 
-            while (users.length > 1) {
+            while (users.length >= 1) {
                 if (users.length >= 5)
                     paginated[x] = [...users.splice(0, 5)]
                 else

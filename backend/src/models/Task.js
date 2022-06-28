@@ -10,7 +10,7 @@ const taskSchema = new mongoose.Schema({
     versionKey: false
 })
 
-taskSchema.methods.isValid = async function () {
+taskSchema.methods.isValid = async function() {
     let errorArray = [
         await validateUser(this.user),
         validateDate(this.date),

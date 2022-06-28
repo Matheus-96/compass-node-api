@@ -70,17 +70,21 @@ function createCard(user: Object) {
     return `
 <div class="card">
                         <div class="div">
+                            <label for="">ID</label>
+                            <p class="id">
+                                ${user['_id']}
+                            </p>
                             <label for="">Name</label>
                             <p class="name">
                                 ${user['name']}
                             </p>
                             <div class="div"></div>
+                            </div>
+                            <div class="div">
                             <label for="">E-mail</label>
                             <p class="email">
                                 ${user['email']}
                             </p>
-                        </div>
-                        <div class="div">
                             <label for="">Birth Date</label>
                             <p class="birthDate">
                                 ${user['birthDate']}

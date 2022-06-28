@@ -35,7 +35,7 @@
             </div>
             <div class="modal-actions">
                 <button class="btn close">Close</button>
-                <a href="./tasklist.html"><button class="btn">View tasks</button></a>
+                <a href="./listTask.html"><button class="btn">View tasks</button></a>
             </div>
         </div>
     </div>
@@ -54,13 +54,12 @@
                 <div class="two-column">
                     <div class="input-group">
                         <label class="input-label" for="user">User ID</label>
-                        <input class="input-text" type="text" name="user" id="user" maxlength="24"
-                            placeholder="Ex: 0123456789abcdef01234567">
+                        <input class="input-text" type="text" name="user" id="user" maxlength="24" placeholder="Ex: 0123456789abcdef01234567">
                         <small class="input-message error">This field is required. Must be a valid User Id.</small>
                     </div>
                     <div class="input-group">
                         <label class="input-label" for="date">Task Date</label>
-                        <input class="input-text" type="date" name="date" id="date">
+                        <input class="input-text" type="datetime-local" name="date" id="date">
                         <small class="input-message error">This field is required</small>
                     </div>
                 </div>

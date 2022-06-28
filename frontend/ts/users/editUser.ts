@@ -31,7 +31,7 @@ function fillInputs(user: Object) {
     arrFields?.map(e => {
         if (e.id == "birthDate") {
             let date = new Date(user['birthDate'])
-            e['value'] = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`
+            e['value'] = `${date.getFullYear()}-${date.getMonth()+1 <= 9 ? "0"+(date.getMonth()+1) : date.getMonth()+1}-${date.getDate() + 1}`
             return
         }
         e['value'] = user[e.id]

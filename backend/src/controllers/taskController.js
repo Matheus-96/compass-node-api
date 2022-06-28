@@ -2,7 +2,7 @@ import tasks from "../models/Task.js";
 
 class TaskController {
 
-    static createTask = async (req, res) => {
+    static createTask = async(req, res) => {
         let task = new tasks(req.body);
         let validation = await task.isValid()
         if (validation.ok) {
@@ -18,12 +18,12 @@ class TaskController {
         }
     }
 
-    static listTask = (req, res) => {
+    static listTask = async(req, res) => {
         tasks.find((err, tasks) => {
             let x = 0
             let paginated = []
 
-            while (tasks.length > 1) {
+            while (tasks.length >= 1) {
                 if (tasks.length >= 5)
                     paginated[x] = [...tasks.splice(0, 5)]
                 else
@@ -32,7 +32,7 @@ class TaskController {
             }
             res.status(200).json(paginated)
 
-        })
+        }).populate('user')
     }
     static listTaskById = (req, res) => {
         const id = req.params.id;
@@ -42,10 +42,9 @@ class TaskController {
             } else {
                 res.status(200).send(tasks);
             }
-        }
-        )
+        })
     }
-    static updateTask = async (req, res) => {
+    static updateTask = async(req, res) => {
         const { id } = req.params;
         let task = new tasks(req.body);
         let validation = await task.isValid();

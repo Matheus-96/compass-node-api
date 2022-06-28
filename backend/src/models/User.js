@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     address: { type: String, required: true },
-    number: { type: Number, required: true },
+    number: { type: String, required: true },
     complement: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
@@ -47,7 +47,7 @@ function validateAddress(address) {
 }
 
 function validateNumber(number) {
-    return number > 0 ? true : "number"
+    return number.length > 0 ? true : "number"
 }
 
 function validateComplement(complement) {
