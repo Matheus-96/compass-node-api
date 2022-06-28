@@ -11,7 +11,7 @@ window.addEventListener('load', async () => {
     if (id) {
         task = await getTask(id)
         task = await task['json']()
-        //fillInputs(task)
+        fillInputs(task)
         canEdit(false)
     }
 })
@@ -26,17 +26,18 @@ async function getTask(id: string) {
     return await fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
 }
 
-/*function fillInputs(task: Object) {
+function fillInputs(task: Object) {
     let arrFields = getFormFields()
     arrFields?.map(e => {
-        if (e.id == "birthDate") {
-            let date = new Date(task['birthDate'])
-            e['value'] = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`
-            return
-        }
-        e['value'] = task[e.id]
+      if (e.id == "date") {
+        let date = new Date(task['date'])
+        e['value'] = `${date.getFullYear()}-${date.getMonth() + 1 <= 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1}-${date.getDate() + 1}`
+        return
+      }
+      e['value'] = task[e.id]
     })
-}*/
+  }
+
 
 function getFormFields(): Array<HTMLInputElement> | null {
     let fields = document.querySelector('form')
