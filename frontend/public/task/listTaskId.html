@@ -41,20 +41,43 @@
 
 
 
-  <div class="container create-user">
+ 
+  <div class="container create-task">
     <header class="header">
-      <h1 class="heading">List Tasks</h1>
+        <h1 class="heading">View/Edit Task</h1>
+        <button class="btn" id='editBtn'>Edit</button>
     </header>
     <main class="main">
-      <div class="container-tasks">
+        <form id="formCreateTask" method="POST" action="#">
+            <div class="input-group">
+                <label class="input-label" for="description">Description</label>
+                <input class="input-text" type="text" name="description" id="description">
+                <small class="input-message error">This field is required</small>
+            </div>
+            <div class="two-column">
+                <div class="input-group">
+                    <label class="input-label" for="user">User ID</label>
+                    <input class="input-text" type="text" name="user" id="user" maxlength="24"
+                        placeholder="Ex: 0123456789abcdef01234567">
+                    <small class="input-message error">This field is required. Must be a valid User Id.</small>
+                </div>
+                <div class="input-group">
+                    <label class="input-label" for="date">Task Date</label>
+                    <input class="input-text" type="date" name="date" id="date">
+                    <small class="input-message error">This field is required</small>
+                </div>
+            </div>
+            <div class="form-submit">
+                <button class="btn" type="submit" id="submit">Submit</button>
+            </div>
+        </form>
 
-      </div>
     </main>
     <footer class="footer">
 
     </footer>
-  </div>
-  <script src="../js/tasks/listTask.js" type="module"></script>
+</div>
+<script src="../js/tasks/editTask.js" type="module"></script>
 </body>
 
 </html>
