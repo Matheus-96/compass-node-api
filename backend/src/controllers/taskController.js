@@ -20,7 +20,17 @@ class TaskController {
 
     static listTask = (req, res) => {
         tasks.find((err, tasks) => {
-            res.status(200).json(tasks)
+            let x = 0
+            let paginated = []
+
+            while (tasks.length > 1) {
+                if (tasks.length >= 5)
+                    paginated[x] = [...tasks.splice(0, 5)]
+                else
+                    paginated[x] = [...tasks.splice(0, tasks.length)]
+                x++
+            }
+            res.status(200).json(paginated)
 
         })
     }
