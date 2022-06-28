@@ -14,4 +14,7 @@
     &:active {
         background-color: $backgroundPrimary-click;
     }
+    &:disabled {
+        background-color: grey;
+    }
 }
