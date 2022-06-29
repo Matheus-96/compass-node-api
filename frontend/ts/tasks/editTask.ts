@@ -29,14 +29,14 @@ async function getTask(id: string) {
 function fillInputs(task: Object) {
     let arrFields = getFormFields()
     arrFields?.map(e => {
-      if (e.id == "date") {
-        let date = new Date(task['date'])
-        e['value'] = `${date.getFullYear()}-${date.getMonth() + 1 <= 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1}-${date.getDate() + 1}`
-        return
-      }
-      e['value'] = task[e.id]
+        if (e.id == "date") {
+            let date = new Date(task['date'])
+            e['value'] = `${date.getFullYear()}-${date.getMonth() + 1 <= 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1}-${date.getDate() + 1}`
+            return
+        }
+        e['value'] = task[e.id]
     })
-  }
+}
 
 
 function getFormFields(): Array<HTMLInputElement> | null {
@@ -48,7 +48,7 @@ function getFormFields(): Array<HTMLInputElement> | null {
     return null
 }
 
-function canEdit(val: boolean){
+function canEdit(val: boolean) {
     let arr = getFormFields()
     arr?.forEach(e => e.disabled = !val)
 }
@@ -60,7 +60,7 @@ const updateTask = async (event: Event) => {
     let json = await response['json']()
     let statusCode = response['status']
     console.log(statusCode);
-    
+
     if (statusCode == 400)
         showErrors(json['message'])
     else if (statusCode == 200) {
