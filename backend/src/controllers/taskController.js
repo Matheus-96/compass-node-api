@@ -2,7 +2,7 @@ import tasks from "../models/Task.js";
 
 class TaskController {
 
-    static createTask = async(req, res) => {
+    static createTask = async (req, res) => {
         let task = new tasks(req.body);
         let validation = await task.isValid()
         if (validation.ok) {
@@ -18,7 +18,7 @@ class TaskController {
         }
     }
 
-    static listTask = async(req, res) => {
+    static listTask = async (req, res) => {
         tasks.find((err, tasks) => {
             let x = 0
             let paginated = []
@@ -44,7 +44,7 @@ class TaskController {
             }
         }).populate('user')
     }
-    static updateTask = async(req, res) => {
+    static updateTask = async (req, res) => {
         const { id } = req.params;
         let task = new tasks(req.body);
         let validation = await task.isValid();
@@ -67,7 +67,7 @@ class TaskController {
 
         tasks.findByIdAndDelete(id, (err) => {
             if (!err) {
-                res.status(200).send({ message: `Task (${id}) was successfully deleted.` })
+                res.status(204).send({ message: `Task (${id}) was successfully deleted.` })
             } else {
                 res.status(404).send({ message: `Task (${id}) was not found or couldn't be deleted. ${err.message}` })
             }
