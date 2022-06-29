@@ -42,7 +42,7 @@ class TaskController {
             } else {
                 res.status(200).send(tasks);
             }
-        })
+        }).populate('user')
     }
     static updateTask = async(req, res) => {
         const { id } = req.params;

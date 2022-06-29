@@ -35,3 +35,10 @@
         }
     }
 }
+
+.two-column {
+    display: flex;
+    div {
+        width: 50%;
+    }
+}

@@ -1,6 +1,54 @@
 import { toggleModal, initModal } from '../common/modal.js'
 
 initModal('modal')
+initModal('searchUserModal')
+
+window.addEventListener('load', () => {
+  let searchUser = document.querySelector('#searchUser')
+  if (searchUser) {
+    searchUser.addEventListener('click', openSearchUserModal)
+  }
+  let userList = document.querySelector('.user-list-ul')
+  if (userList) {
+    userList.addEventListener(`click`, (event) => {
+      let target = event.target as HTMLLIElement
+      if (target.tagName == 'LI') {
+        target.classList.add('selected')
+        let input = document.querySelector('#user') as HTMLInputElement
+        input.value = target.dataset.id!
+        let inputName = document.querySelector('#id_name') as HTMLInputElement
+        inputName.value = target.textContent!
+        toggleModal(`searchUserModal`)
+      }
+    })
+  }
+})
+
+async function openSearchUserModal() {
+
+  let userList = document.querySelector('.user-list-ul')
+  if (userList) {
+    userList.innerHTML = ''
+    toggleModal('searchUserModal')
+    let users = Array.from(await getUsers())
+
+    users.map((page: Array<Object>) => {
+      page.map(user => {
+        let li = document.createElement(`li`)
+        li.textContent = user['name']
+        li.dataset.id = user[`_id`]
+        userList?.append(li)
+      })
+
+    })
+
+  }
+}
+
+async function getUsers() {
+  let response = await fetch('http://127.0.0.1:3000/api/v1/users', { method: 'GET' })
+  return await response.json()
+}
 
 //Evento de submit do formulário POST TASK
 let form = document.querySelector("#formCreateTask") as HTMLFormElement
@@ -32,6 +80,7 @@ async function createRequest(form: HTMLFormElement): Promise<Object> {
   })
   return request
 }
+
 
 function showErrors(errors: Array<string>) {
   errors.map((el: string) => {

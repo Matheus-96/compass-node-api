@@ -3,8 +3,57 @@ import { toggleModal, initModal } from '../common/modal.js'
 initModal('modal')
 var id: string | null
 
+initModal('searchUserModal')
 
+window.addEventListener('load', () => {
+
+})
+
+
+async function openSearchUserModal(event) {
+    if (event.target.dataset.enabled == 'true') {
+
+        let userList = document.querySelector('.user-list-ul')
+        if (userList) {
+            toggleModal('searchUserModal')
+            let users = Array.from(await getUsers())
+
+            users.map((page: Array<Object>) => {
+                page.map(user => {
+
+                    let li = document.createElement(`li`)
+                    li.textContent = user['name']
+                    li.dataset.id = user[`_id`]
+                    userList?.append(li)
+                })
+            })
+
+        }
+    }
+}
+
+async function getUsers() {
+    let response = await fetch('http://127.0.0.1:3000/api/v1/users', { method: 'GET' })
+    return await response.json()
+}
 window.addEventListener('load', async () => {
+    let userList = document.querySelector('.user-list-ul')
+    if (userList) {
+        userList.innerHTML = ''
+        userList.addEventListener(`click`, (event) => {
+            let target = event.target as HTMLLIElement
+            if (target.tagName == 'LI') {
+                console.log("LI");
+
+                target.classList.add('selected')
+                let input = document.querySelector('#user') as HTMLInputElement
+                input.value = target.dataset.id!
+                let inputName = document.querySelector('#id_name') as HTMLInputElement
+                inputName.value = target.textContent!
+                toggleModal(`searchUserModal`)
+            }
+        })
+    }
     let params = new URLSearchParams(window.location.search)
     id = params.get('id')
     let task: Object
@@ -13,6 +62,10 @@ window.addEventListener('load', async () => {
         task = await task['json']()
         fillInputs(task)
         canEdit(false)
+    }
+    let searchUser = document.querySelector('#searchUser')
+    if (searchUser) {
+        searchUser.addEventListener('click', (event) => openSearchUserModal(event))
     }
 })
 
@@ -29,14 +82,20 @@ async function getTask(id: string) {
 function fillInputs(task: Object) {
     let arrFields = getFormFields()
     arrFields?.map(e => {
-      if (e.id == "date") {
-        let date = new Date(task['date'])
-        e['value'] = `${date.getFullYear()}-${date.getMonth() + 1 <= 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1}-${date.getDate() + 1}`
-        return
-      }
-      e['value'] = task[e.id]
+        if (e.id == "date") {
+            let date = new Date(task['date'])
+            e['value'] = `${date.getFullYear()}-${date.getMonth() + 1 <= 9 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1}-${date.getDate() + 1} ${date.getHours()}:${date.getMinutes()}`
+            return
+        } else if (e.id == "user") {
+            e['value'] = task['user']['_id']
+            return
+        } else if (e.id == "id_name") {
+            e['value'] = task['user']['name']
+            return
+        }
+        e['value'] = task[e.id]
     })
-  }
+}
 
 
 function getFormFields(): Array<HTMLInputElement> | null {
@@ -48,9 +107,14 @@ function getFormFields(): Array<HTMLInputElement> | null {
     return null
 }
 
-function canEdit(val: boolean){
+function canEdit(val: boolean) {
     let arr = getFormFields()
-    arr?.forEach(e => e.disabled = !val)
+    arr?.forEach(e => {
+        if(e.name=='id_name') return
+        e.disabled = !val
+    })
+    let svg = document.querySelector('#searchUser') as SVGElement
+    svg.dataset.enabled = val + ''
 }
 
 //Chamar API e criar task
@@ -60,7 +124,7 @@ const updateTask = async (event: Event) => {
     let json = await response['json']()
     let statusCode = response['status']
     console.log(statusCode);
-    
+
     if (statusCode == 400)
         showErrors(json['message'])
     else if (statusCode == 200) {

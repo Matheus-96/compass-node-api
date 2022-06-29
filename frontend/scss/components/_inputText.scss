@@ -34,4 +34,18 @@
             display: block;
         }
     }
+    .search-group {
+        width: 100% !important;
+        position: relative;
+        .input-text {
+            width: 100%;
+        }
+        svg {
+            cursor: pointer;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) translateX(-40%);
+            position: absolute;
+        }
+    }
 }
