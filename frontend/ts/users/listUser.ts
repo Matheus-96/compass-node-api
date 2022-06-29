@@ -13,9 +13,35 @@ window.addEventListener('load', async () => {
 
 })
 
+document.querySelector('#searchInput')?.addEventListener('keyup', (event) => {
+    let input = event.target as HTMLInputElement
+    let customUser: Array<Object> = []
+    if(input.value.length == 0){
+        updateButtons()
+        updateCards('0')
+    } else {
+        let footer = document.querySelector('footer')
+        if (footer) 
+            footer.innerHTML = ''
+    }
+
+
+    users.map((page: Array<Object>) => {
+        customUser.push(
+            ...page.filter(user => {
+            let regex = new RegExp(`${input.value}`, 'g')
+            return regex.test(user['name'])
+        })) 
+        
+        
+        
+    })
+    updateCards('0',customUser)
+})
+
 containerUsers.addEventListener('click', event => {
     let target = event.target as HTMLElement
-    
+
     if (target.classList.contains('deleteBtn')) {
         let deleteId = document.querySelector('#deleteId') as HTMLInputElement
         let id = target.dataset.id
@@ -27,7 +53,7 @@ containerUsers.addEventListener('click', event => {
 
 document.querySelector('.modal')?.addEventListener('click', event => {
     let target = event.target as HTMLElement
-    if(target.classList.contains('delete')){
+    if (target.classList.contains('delete')) {
         let idInput = document.querySelector('#deleteId') as HTMLInputElement
         let id = idInput.value
         deleteUser(id)
@@ -57,12 +83,22 @@ async function getUsers() {
     users = await response.json()
 }
 
-async function updateCards(page: string) {
-    if (containerUsers) {
-        containerUsers.innerHTML = ''
-        users[page].map(el => {
-            containerUsers.innerHTML += createCard(el);
-        })
+async function updateCards(page: string, customUserList: Array<Object> = []) {
+    if (customUserList.length == 0){
+
+        if (containerUsers) {
+            containerUsers.innerHTML = ''
+            users[page].map(el => {
+                containerUsers.innerHTML += createCard(el);
+            })
+        }
+    } else {
+        if (containerUsers) {
+            containerUsers.innerHTML = ''
+            customUserList.map(el => {
+                containerUsers.innerHTML += createCard(el);
+            })
+        }
     }
 }
 

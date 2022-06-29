@@ -28,8 +28,8 @@ async function openSearchUserModal() {
 
   let userList = document.querySelector('.user-list-ul')
   if (userList) {
-    userList.innerHTML = ''
     toggleModal('searchUserModal')
+    userList.innerHTML = ''
     let users = Array.from(await getUsers())
 
     users.map((page: Array<Object>) => {

@@ -12,9 +12,10 @@ window.addEventListener('load', () => {
 
 async function openSearchUserModal(event) {
     if (event.target.dataset.enabled == 'true') {
-
+        
         let userList = document.querySelector('.user-list-ul')
         if (userList) {
+            userList.innerHTML = ''
             toggleModal('searchUserModal')
             let users = Array.from(await getUsers())
 
