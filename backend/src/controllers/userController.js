@@ -46,7 +46,7 @@ class UserController {
 
         users.findByIdAndDelete(id, (err) => {
             if (!err) {
-                res.status(200).send({ message: `User (${id}) was successfully deleted.` })
+                res.status(204).send({ message: `User (${id}) was successfully deleted.` })
             } else {
                 res.status(404).send({ message: `User (${id}) was not found or couldn't be deleted. ${err.message}` })
             }
