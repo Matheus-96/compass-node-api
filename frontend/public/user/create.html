@@ -22,7 +22,12 @@
         <div class="modal-body">
             <div class="modal-content">
                 <div class="content-image">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="96px" height="96px"><path fill="#c8e6c9" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"/><path fill="#4caf50" d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="96px" height="96px">
+                        <path fill="#c8e6c9"
+                            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                        <path fill="#4caf50"
+                            d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z" />
+                    </svg>
                 </div>
                 <p class="content-text">
                     User succesfully created.
@@ -40,6 +45,7 @@
     <div class="container create-user">
         <header class="header">
             <h1 class="heading">Register User</h1>
+            <a href="/index.html"><button class="btn">Home</button></a>
         </header>
         <main class="main">
             <form id="formCreateUser" method="POST" action="#">
@@ -52,7 +58,8 @@
                     <div class="input-group">
                         <label class="input-label" for="cpf">CPF</label>
                         <input class="input-text" type="text" name="cpf" id="cpf">
-                        <small class="input-message error">Required. Should be in the following format: 000.000.000-00</small>
+                        <small class="input-message error">Required. Should be in the following format:
+                            000.000.000-00</small>
                     </div>
                     <div class="input-group">
                         <label class="input-label" for="birthDate">Birth Date</label>
