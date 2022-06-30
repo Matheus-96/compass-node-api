@@ -23,7 +23,7 @@ const createUser = async (event: Event) => {
 
 async function createRequest(form: HTMLFormElement): Promise<Object> {
     let data = new FormData(form)
-    let request = await fetch('http://127.0.0.1:3000/api/v1/users/', {
+    let request = await fetch('https://compass-node-api.herokuapp.com/api/v1/users/', {
         method: 'POST',
         body: ObterFormJSON(data),
         headers: new Headers({

@@ -59,17 +59,17 @@ document.querySelector('.footer')?.addEventListener('click', (event) => {
 })
 
 async function deleteUser(id: string) {
-    let response = await fetch(`http://127.0.0.1:3000/api/v1/users/${id}`, { method: 'DELETE' })
+    let response = await fetch(`https://compass-node-api.herokuapp.com/api/v1/users/${id}`, { method: 'DELETE' })
     users = await response.json()
 }
 
 async function getUsers() {
-    let response = await fetch('http://127.0.0.1:3000/api/v1/users', { method: 'GET' })
+    let response = await fetch('https://compass-node-api.herokuapp.com/api/v1/users', { method: 'GET' })
     users = await response.json()
 }
 
 async function getUserQuery(name: string, cpf: string) {
-    let response = await fetch('http://127.0.0.1:3000/api/v1/queryUsers', {
+    let response = await fetch('https://compass-node-api.herokuapp.com/api/v1/queryUsers', {
         method: 'POST',
         body: JSON.stringify({"name": name, "cpf": cpf}),
         headers: new Headers({'Content-Type': 'Application/Json'})

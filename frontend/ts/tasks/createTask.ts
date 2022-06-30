@@ -46,7 +46,7 @@ async function openSearchUserModal() {
 }
 
 async function getUsers() {
-  let response = await fetch('http://127.0.0.1:3000/api/v1/users', { method: 'GET' })
+  let response = await fetch('https://compass-node-api.herokuapp.com/api/v1/users', { method: 'GET' })
   return await response.json()
 }
 
@@ -71,7 +71,7 @@ const createTask = async (event: Event) => {
 
 async function createRequest(form: HTMLFormElement): Promise<Object> {
   let data = new FormData(form)
-  let request = await fetch('http://127.0.0.1:3000/api/v1/tasks/', {
+  let request = await fetch('https://compass-node-api.herokuapp.com/api/v1/tasks/', {
     method: 'POST',
     body: ObterFormJSON(data),
     headers: new Headers({

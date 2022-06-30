@@ -43,7 +43,7 @@ document.querySelector('.modal')?.addEventListener('click', event => {
 })
 
 async function getTasks() {
-  let response = await fetch('http://127.0.0.1:3000/api/v1/tasks', { method: 'GET' })
+  let response = await fetch('https://compass-node-api.herokuapp.com/api/v1/tasks', { method: 'GET' })
   tasks = await response.json()
   console.log(tasks);
 }
@@ -94,7 +94,7 @@ function createTaskCard(task: Object) {
 }
 
 async function deleteTask(id: string) {
-  let response = await fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`, { method: 'DELETE' })
+  let response = await fetch(`https://compass-node-api.herokuapp.com/api/v1/tasks/${id}`, { method: 'DELETE' })
   tasks = await response.json()
 }
 

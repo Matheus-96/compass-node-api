@@ -34,7 +34,7 @@ async function openSearchUserModal(event) {
 }
 
 async function getUsers() {
-    let response = await fetch('http://127.0.0.1:3000/api/v1/users', { method: 'GET' })
+    let response = await fetch('https://compass-node-api.herokuapp.com/api/v1/users', { method: 'GET' })
     return await response.json()
 }
 window.addEventListener('load', async () => {
@@ -77,7 +77,7 @@ document.querySelector('#editBtn')?.addEventListener('click', () => {
 document.querySelector("#formEditTask")?.addEventListener('submit', (event) => updateTask(event))
 
 async function getTask(id: string) {
-    return await fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`)
+    return await fetch(`https://compass-node-api.herokuapp.com/api/v1/tasks/${id}`)
 }
 
 function fillInputs(task: Object) {
@@ -136,7 +136,7 @@ const updateTask = async (event: Event) => {
 
 async function createRequest(form: HTMLFormElement): Promise<Object> {
     let data = new FormData(form)
-    let request = await fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`, {
+    let request = await fetch(`https://compass-node-api.herokuapp.com/api/v1/tasks/${id}`, {
         method: 'PUT',
         body: ObterFormJSON(data),
         headers: new Headers({
