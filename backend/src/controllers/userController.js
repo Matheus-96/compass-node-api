@@ -80,7 +80,42 @@ class UserController {
 
         })
     }
+    static listUserQuery = (req, res) => {
+        let { cpf, name } = req.body;
+        console.log(req.body);
+        let query = []
+        if (cpf.length > 0) {
+            cpf = new RegExp(cpf)
+            query.push({ cpf })
+        }
+        if (name.length > 0) {
+            name = new RegExp(name)
+            query.push({ name })
+        }
+        name = new RegExp(name)
 
+        users.find({ $or: query }, (err, users) => {
+            if (err) {
+                res.status(404).send({ message: `${err.message}- users not found! ` })
+            } else {
+
+                let x = 0
+                let paginated = []
+
+                while (users.length >= 1) {
+                    if (users.length >= 5)
+                        paginated[x] = [...users.splice(0, 5)]
+                    else
+                        paginated[x] = [...users.splice(0, users.length)]
+                    x++
+                }
+
+                res.status(200).send(paginated);
+            }
+
+        })
+    }
 }
+
 
 export default UserController;

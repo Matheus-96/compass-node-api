@@ -6,7 +6,7 @@ var containerTasks = document.querySelector('.container-tasks') as HTMLDivElemen
 //Event listener para quando finalizar carregamento da pagina
 window.addEventListener('load', async () => {
   await getTasks()
-  updateTaskCards(0)
+  updateTaskCards('0')
   updateTaskButtons()
   initModal('modal')
 })
@@ -51,8 +51,8 @@ async function getTasks() {
 async function updateTaskCards(page: string) {
   if (containerTasks) {
     containerTasks.innerHTML = ''
+    console.log(tasks);
     tasks[page].map(el => {
-      console.log(el);
 
       containerTasks.innerHTML += createTaskCard(el);
     })
@@ -71,7 +71,7 @@ function createTaskCard(task: Object) {
         <div class="div"></div>
         <label for="">User</label>
         <p class="user">
-        ${task['user'].name}
+        ${task['user'] ?task['user']['name'] : 'Removed User'}
         </p>
     </div>
     <div class="">

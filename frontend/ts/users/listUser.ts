@@ -13,30 +13,15 @@ window.addEventListener('load', async () => {
 
 })
 
-document.querySelector('#searchInput')?.addEventListener('keyup', (event) => {
-    let input = event.target as HTMLInputElement
-    let customUser: Array<Object> = []
-    if(input.value.length == 0){
-        updateButtons()
+document.querySelector('#searchUser')?.addEventListener('click', async () => {
+    let name = document.querySelector('#searchInputName') as HTMLInputElement
+    let cpf = document.querySelector('#searchInputCPF') as HTMLInputElement
+    (name.value == "" && cpf.value == "") ?
+        await getUsers() :
+        await getUserQuery(name.value, cpf.value);
+    
         updateCards('0')
-    } else {
-        let footer = document.querySelector('footer')
-        if (footer) 
-            footer.innerHTML = ''
-    }
-
-
-    users.map((page: Array<Object>) => {
-        customUser.push(
-            ...page.filter(user => {
-            let regex = new RegExp(`${input.value}`, 'g')
-            return regex.test(user['name'])
-        })) 
-        
-        
-        
-    })
-    updateCards('0',customUser)
+        updateButtons()
 })
 
 containerUsers.addEventListener('click', event => {
@@ -83,21 +68,30 @@ async function getUsers() {
     users = await response.json()
 }
 
-async function updateCards(page: string, customUserList: Array<Object> = []) {
-    if (customUserList.length == 0){
+async function getUserQuery(name: string, cpf: string) {
+    let response = await fetch('http://127.0.0.1:3000/api/v1/queryUsers', {
+        method: 'POST',
+        body: JSON.stringify({"name": name, "cpf": cpf}),
+        headers: new Headers({'Content-Type': 'Application/Json'})
+    })
+    users = await response.json()
+}
 
-        if (containerUsers) {
+async function updateCards(page: string, customUserList: Array<Object> = []) {
+    if (customUserList.length > 0){
+        users = customUserList
+    }
+
+    if (containerUsers) {
+        if (users.length > 0){
+
             containerUsers.innerHTML = ''
             users[page].map(el => {
                 containerUsers.innerHTML += createCard(el);
             })
-        }
-    } else {
-        if (containerUsers) {
-            containerUsers.innerHTML = ''
-            customUserList.map(el => {
-                containerUsers.innerHTML += createCard(el);
-            })
+        } else {
+
+            containerUsers.innerHTML = 'Nenhum usuário encontrado'
         }
     }
 }
@@ -177,3 +171,5 @@ function updateButtons() {
         }
     }
 }
+
+
