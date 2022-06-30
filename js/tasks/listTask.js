@@ -45,7 +45,7 @@ containerTasks.addEventListener('click', event => {
 });
 function getTasks() {
     return __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch('http://127.0.0.1:3000/api/v1/tasks', { method: 'GET' });
+        let response = yield fetch('https://compass-node-api.herokuapp.com/api/v1/tasks', { method: 'GET' });
         tasks = yield response.json();
         console.log(tasks);
     });
@@ -96,7 +96,7 @@ function createTaskCard(task) {
 }
 function deleteTask(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`, { method: 'DELETE' });
+        let response = yield fetch(`https://compass-node-api.herokuapp.com/api/v1/tasks/${id}`, { method: 'DELETE' });
         tasks = yield response.json();
     });
 }

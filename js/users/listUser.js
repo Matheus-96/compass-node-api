@@ -56,19 +56,19 @@ containerUsers.addEventListener('click', event => {
 });
 function deleteUser(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch(`http://127.0.0.1:3000/api/v1/users/${id}`, { method: 'DELETE' });
+        let response = yield fetch(`https://compass-node-api.herokuapp.com/api/v1/users/${id}`, { method: 'DELETE' });
         users = yield response.json();
     });
 }
 function getUsers() {
     return __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch('http://127.0.0.1:3000/api/v1/users', { method: 'GET' });
+        let response = yield fetch('https://compass-node-api.herokuapp.com/api/v1/users', { method: 'GET' });
         users = yield response.json();
     });
 }
 function getUserQuery(name, cpf) {
     return __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch('http://127.0.0.1:3000/api/v1/queryUsers', {
+        let response = yield fetch('https://compass-node-api.herokuapp.com/api/v1/queryUsers', {
             method: 'POST',
             body: JSON.stringify({ "name": name, "cpf": cpf }),
             headers: new Headers({ 'Content-Type': 'Application/Json' })

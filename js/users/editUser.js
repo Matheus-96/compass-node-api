@@ -28,7 +28,7 @@ window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function
 (_b = document.querySelector("#formEditUser")) === null || _b === void 0 ? void 0 : _b.addEventListener('submit', (event) => updateUser(event));
 function getUser(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield fetch(`http://127.0.0.1:3000/api/v1/users/${id}`);
+        return yield fetch(`https://compass-node-api.herokuapp.com/api/v1/users/${id}`);
     });
 }
 function fillInputs(user) {
@@ -70,7 +70,7 @@ const updateUser = (event) => __awaiter(void 0, void 0, void 0, function* () {
 function createRequest(form) {
     return __awaiter(this, void 0, void 0, function* () {
         let data = new FormData(form);
-        let request = yield fetch(`http://127.0.0.1:3000/api/v1/users/${id}`, {
+        let request = yield fetch(`https://compass-node-api.herokuapp.com/api/v1/users/${id}`, {
             method: 'PUT',
             body: ObterFormJSON(data),
             headers: new Headers({

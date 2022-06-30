@@ -36,7 +36,7 @@ function openSearchUserModal(event) {
 }
 function getUsers() {
     return __awaiter(this, void 0, void 0, function* () {
-        let response = yield fetch('http://127.0.0.1:3000/api/v1/users', { method: 'GET' });
+        let response = yield fetch('https://compass-node-api.herokuapp.com/api/v1/users', { method: 'GET' });
         return yield response.json();
     });
 }
@@ -77,7 +77,7 @@ window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function
 (_b = document.querySelector("#formEditTask")) === null || _b === void 0 ? void 0 : _b.addEventListener('submit', (event) => updateTask(event));
 function getTask(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`);
+        return yield fetch(`https://compass-node-api.herokuapp.com/api/v1/tasks/${id}`);
     });
 }
 function fillInputs(task) {
@@ -133,7 +133,7 @@ const updateTask = (event) => __awaiter(void 0, void 0, void 0, function* () {
 function createRequest(form) {
     return __awaiter(this, void 0, void 0, function* () {
         let data = new FormData(form);
-        let request = yield fetch(`http://127.0.0.1:3000/api/v1/tasks/${id}`, {
+        let request = yield fetch(`https://compass-node-api.herokuapp.com/api/v1/tasks/${id}`, {
             method: 'PUT',
             body: ObterFormJSON(data),
             headers: new Headers({
