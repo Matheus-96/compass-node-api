@@ -1,0 +1,61 @@
+@import '../variables';
+.btn {
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    border-radius: 4px;
+    color: white;
+    background-color: $backgroundPrimary;
+    border: none;
+    outline: none;
+    &:hover {
+        background-color: $backgroundPrimary-hover;
+    }
+    &:active {
+        background-color: $backgroundPrimary-click;
+    }
+    &:disabled {
+        background-color: grey;
+    }
+}
+
+.btn {
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    border-radius: 4px;
+    color: white;
+    background-color: $backgroundPrimary;
+    border: none;
+    outline: none;
+    &:hover {
+        background-color: $backgroundPrimary-hover;
+    }
+    &:active {
+        background-color: $backgroundPrimary-click;
+    }
+    &:disabled {
+        background-color: grey;
+    }
+    &.top {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        background-color: $backgroundAlert;
+        color: black;
+        width: 100%;
+        cursor: pointer;
+    }
+    &.bottom {
+        cursor: pointer;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: $backgroundDanger;
+        width: 100%;
+    }
+    &.delete {
+        background-color: $backgroundDanger;
+    }
+    &.outline {
+        background-color: grey;
+    }
+}

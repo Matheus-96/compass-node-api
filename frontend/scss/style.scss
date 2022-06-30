@@ -1,0 +1,15 @@
+@use "./base.scss";
+@use "./pages/create-user.scss";
+@use "./pages/list-user.scss";
+@use "./pages/landing-page.scss";
+
+* {
+    font-family: 'Roboto';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100vh;
+}

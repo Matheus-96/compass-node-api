@@ -1,5 +1,0 @@
-{
-    "port": 8000,
-    "files": ["./frontend/public/**/*.*"],
-    "server": { "baseDir": "./frontend/public/" }
-}

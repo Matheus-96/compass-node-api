@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+
+    <div class="modal invisible" id="modal" data-active="false">
+        <input type="hidden" name="deleteId" id="deleteId">
+        <div class="modal-head">
+            <h2>Delete user</h2>
+            <div class="modal-btn">
+                <button class='close'>X</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="content-image">
+                    <?xml version="1.0" encoding="iso-8859-1"?>
+                    <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                    <svg version="1.1" width='96px' id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 507.425 507.425" style="enable-background:new 0 0 507.425 507.425;" xml:space="preserve">
+                        <path style="fill:#FFC52F;" d="M329.312,129.112l13.6,22l150.8,242.4c22.4,36,6,65.2-36.8,65.2h-406.4c-42.4,0-59.2-29.6-36.8-65.6
+                            l198.8-320.8c22.4-36,58.8-36,81.2,0L329.312,129.112z" />
+                        <g>
+                            <path style="fill:#F4EFEF;" d="M253.712,343.512c-10.8,0-20-8.8-20-20v-143.2c0-10.8,9.2-20,20-20s20,8.8,20,20v143.2
+                                C273.712,334.312,264.512,343.512,253.712,343.512z" />
+                            <path style="fill:#F4EFEF;"
+                                d="M253.312,407.112c-5.2,0-10.4-2-14-6c-3.6-3.6-6-8.8-6-14s2-10.4,6-14c3.6-3.6,8.8-6,14-6
+                                s10.4,2,14,6c3.6,3.6,6,8.8,6,14s-2,10.4-6,14C263.712,404.712,258.512,407.112,253.312,407.112z" />
+                        </g>
+                        <path d="M456.912,465.512h-406.4c-22,0-38.4-7.6-46-21.6s-5.6-32.8,6-51.2l198.8-321.6c11.6-18.8,27.2-29.2,44.4-29.2l0,0
+                            c16.8,0,32.4,10,43.6,28.4l35.2,56.4l0,0l13.6,22l150.8,243.6c11.6,18.4,13.6,37.2,6,51.2
+                            C495.312,457.912,478.912,465.512,456.912,465.512z M253.312,49.912L253.312,49.912c-14,0-27.2,8.8-37.6,25.2l-198.8,321.6
+                            c-10,16-12,31.6-5.6,43.2s20.4,17.6,39.2,17.6h406.4c18.8,0,32.8-6.4,39.2-17.6c6.4-11.2,4.4-27.2-5.6-43.2l-150.8-243.6l-13.6-22
+                            l-35.2-56.4C280.512,58.712,267.312,49.912,253.312,49.912z" />
+                        <path d="M249.712,347.512c-13.2,0-24-10.8-24-24v-143.2c0-13.2,10.8-24,24-24s24,10.8,24,24v143.2
+                            C273.712,336.712,262.912,347.512,249.712,347.512z M249.712,164.312c-8.8,0-16,7.2-16,16v143.2c0,8.8,7.2,16,16,16s16-7.2,16-16
+                            v-143.2C265.712,171.512,258.512,164.312,249.712,164.312z" />
+                        <path d="M249.712,411.112L249.712,411.112c-6.4,0-12.4-2.4-16.8-6.8c-4.4-4.4-6.8-10.8-6.8-16.8c0-6.4,2.4-12.4,6.8-16.8
+                            c4.4-4.4,10.8-7.2,16.8-7.2c6.4,0,12.4,2.4,16.8,7.2c4.4,4.4,7.2,10.4,7.2,16.8s-2.4,12.4-7.2,16.8
+                            C262.112,408.312,256.112,411.112,249.712,411.112z M249.712,371.112c-4,0-8.4,1.6-11.2,4.8c-2.8,2.8-4.8,7.2-4.8,11.2
+                            c0,4.4,1.6,8.4,4.8,11.2c2.8,2.8,7.2,4.8,11.2,4.8s8.4-1.6,11.2-4.8c2.8-2.8,4.8-7.2,4.8-11.2s-1.6-8.4-4.8-11.2
+                            C258.112,372.712,253.712,371.112,249.712,371.112z" />
+                    </svg>
+
+                </div>
+                <p class="content-text">
+                    Do you really want to delete this user?
+                </p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn close outline">Cancel</button>
+                <a href="./listUser.html"><button class="btn delete">Delete</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container create-user">
+        <header class="header">
+            <h1 class="heading">List Users</h1>
+            <div>
+                <a href="/index.html"><button class="btn">Home</button></a>
+                <a href="create.html"><button class="btn">Register</button></a>
+            </div>
+        </header>
+        <main class="main">
+
+            <div class="searchBar">
+                <div class="search-group">
+                    <label for="">Name</label>
+                    <input type="text" class="input-text" name="searchInputName" id="searchInputName">
+                </div>
+                <div class="search-group">
+                    <label for="">CPF</label>
+                    <input type="text" class="input-text" name="searchInputCPF" id="searchInputCPF">
+                </div>
+                <div class="search-icon">
+                    <svg version="1.1" data-enabled='false' id="searchUser" width='32' id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485.6 485.6" style="enable-background:new 0 0 485.6 485.6;" xml:space="preserve">
+                        <path style="fill:#E64C3D;" d="M447.5,477.85l30.3-30.3c4-4,4-10.4,0-14.4l-149.2-149.2l-44.7,44.7l149.2,149.2
+                            C437.1,481.85,443.5,481.85,447.5,477.85z"/>
+                        <path style="fill:#2C2F33;" d="M163.4,67.05c-53.2,0-96.5,43.3-96.5,96.5c0,5,4.1,9.1,9.1,9.1s9.1-4.1,9.1-9.1
+                            c0-43.2,35.1-78.3,78.3-78.3c5,0,9.1-4.1,9.1-9.1C172.5,71.05,168.4,67.05,163.4,67.05z"/>
+                        <path style="fill:#2C2F33;" d="M335,277.55c-3.5-3.5-9.3-3.5-12.8,0l-15.9,15.9l-21.1-21.1c25.9-28.9,41.7-67.1,41.7-108.9
+                            c0-90.1-73.3-163.4-163.4-163.4S0,73.35,0,163.45s73.3,163.4,163.4,163.4c41.8,0,79.9-15.8,108.9-41.7l21.1,21.1l-15.9,15.9
+                            c-1.7,1.7-2.7,4-2.7,6.4s1,4.7,2.7,6.4l141.9,141.9c5.6,5.6,13,8.7,20.9,8.7s15.3-3.1,20.9-8.7l15.7-15.7c5.6-5.6,8.7-13,8.7-20.9
+                            s-3.1-15.3-8.7-20.9L335,277.55z M18.2,163.45c0-80.1,65.2-145.3,145.3-145.3s145.3,65.2,145.3,145.3s-65.2,145.3-145.3,145.3
+                            S18.2,243.55,18.2,163.45z M464.1,448.45l-15.7,15.7c-2.2,2.2-5,3.4-8.1,3.4s-5.9-1.2-8.1-3.4l-135.5-135.5l31.9-31.9l135.5,135.5
+                            c2.2,2.2,3.4,5,3.4,8.1S466.2,446.35,464.1,448.45z"/>
+                </svg>
+                </div>
+            </div>
+
+            <div class="container-users">
+                <div class="card">
+                    <div class="div">
+                        <label for="">Name</label>
+                        <p class="name">
+                            ${user['name']}
+                        </p>
+                        <div class="div"></div>
+                        <label for="">E-mail</label>
+                        <p class="email">
+                            ${user['email']}
+                        </p>
+                    </div>
+                    <div class="div">
+                        <label for="">Birth Date</label>
+                        <p class="birthDate">
+                            ${user['birthDate']}
+                        </p>
+                    </div>
+                    <div class="div">
+                        <div class="">
+                            <label for="">City</label>
+                            <p class="city">
+                                ${user['city']}
+                            </p>
+                        </div>
+                        <div class="">
+                            <label for="">State</label>
+                            <p class="state">
+                                ${user['state']}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="div">
+                        <label for="">Address</label>
+                        <p class="address">
+                            ${user['address']}
+                        </p>
+                        <label for="">Number</label>
+                        <p class="number">
+                            ${user['number']}
+                        </p>
+                    </div>
+                    </a>
+                    <div class="">
+                        <p>
+                            <a href='./listUserId.html?id=${user[' _id ']}'><button class="btn top">Edit</button></a>
+                        </p>
+                        <p>
+                            <button class="btn bottom deleteBtn">Delete</button>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+
+        </footer>
+    </div>
+    <script src="../js/users/listUser.js" type="module"></script>
+</body>
+
+</html>

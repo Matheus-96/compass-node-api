@@ -1,0 +1,51 @@
+@import "../variables.scss";
+.input-group {
+    padding: 16px 8px;
+    display: flex;
+    flex-direction: column;
+    .input-label {
+        margin-bottom: 8px;
+        font-size: 0.875rem;
+        line-height: 1rem;
+    }
+    .input-text {
+        padding: 1rem;
+        font-size: 1rem;
+        line-height: 1.125rem;
+        border: 2px solid;
+        border-color: $inputBorder;
+        border-radius: 4px;
+        outline: none;
+        &:focus-visible {
+            border-color: $inputLabel-selected;
+        }
+        &.error {
+            border-color: $inputError;
+            color: $inputError;
+        }
+    }
+    .input-message {
+        display: none;
+        margin-top: 4px;
+        &.error {
+            color: $inputError;
+        }
+        &.visible {
+            display: block;
+        }
+    }
+    .search-group {
+        width: 100% !important;
+        position: relative;
+        .input-text {
+            width: 100%;
+        }
+        svg {
+            cursor: pointer;
+            right: 0;
+            top: 50%;
+            transform: translateY(-100%) translateX(-40%);
+            position: absolute;
+        }
+    }
+}

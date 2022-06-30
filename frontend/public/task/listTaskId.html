@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Tasks</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+
+    <div class="modal invisible" id="modal" data-active="false">
+        <div class="modal-head">
+            <h2>Register Task</h2>
+            <div class="modal-btn">
+                <button class='close'>X</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="content-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="96px" height="96px">
+                        <path fill="#c8e6c9"
+                            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z" />
+                        <path fill="#4caf50"
+                            d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z" />
+                    </svg>
+                </div>
+                <p class="content-text">
+                    User succesfully created.
+                </p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn close">Close</button>
+                <a href="./listTask.html"><button class="btn">View tasks</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de busca de usuário -->
+    <div class="modal large invisible" id="searchUserModal" data-active="false">
+        <div class="modal-head">
+            <h2>Search User</h2>
+            <div class="modal-btn">
+                <button class='close'>X</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="user-list">
+                <ul class="user-list-ul">
+                    <li>Victor</li>
+                    <li>Matheus</li>
+                </ul>
+            </div>
+            <div class="modal-actions">
+                <button class="btn close">Close</button>
+                <a href="./listTask.html"><button class="btn">View tasks</button></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container create-task">
+        <header class="header">
+            <h1 class="heading">View/Edit Task</h1>
+            <div>
+                <a href="listTask.html"><button class="btn">List</button></a>
+                <button class="btn" id='editBtn'>Edit</button>
+            </div>
+        </header>
+        <main class="main">
+            <form id="formEditTask" method="POST" action="#">
+                <div class="input-group">
+                    <label class="input-label" for="description">Description</label>
+                    <input class="input-text" type="text" name="description" id="description">
+                    <small class="input-message error">This field is required</small>
+                </div>
+                <div class="two-column">
+                    <div class="input-group">
+                        <label class="input-label" for="user">User ID</label>
+                        <div class="search-group">
+                            <input class="input-text" type="text" name="user" id="user" maxlength="24" placeholder="Ex: 0123456789abcdef01234567">
+                            <svg version="1.1" data-enabled='false' id="searchUser" width='32' id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485.6 485.6" style="enable-background:new 0 0 485.6 485.6;" xml:space="preserve">
+                                <path style="fill:#E64C3D;" d="M447.5,477.85l30.3-30.3c4-4,4-10.4,0-14.4l-149.2-149.2l-44.7,44.7l149.2,149.2
+                                    C437.1,481.85,443.5,481.85,447.5,477.85z"/>
+                                <path style="fill:#2C2F33;" d="M163.4,67.05c-53.2,0-96.5,43.3-96.5,96.5c0,5,4.1,9.1,9.1,9.1s9.1-4.1,9.1-9.1
+                                    c0-43.2,35.1-78.3,78.3-78.3c5,0,9.1-4.1,9.1-9.1C172.5,71.05,168.4,67.05,163.4,67.05z"/>
+                                <path style="fill:#2C2F33;" d="M335,277.55c-3.5-3.5-9.3-3.5-12.8,0l-15.9,15.9l-21.1-21.1c25.9-28.9,41.7-67.1,41.7-108.9
+                                    c0-90.1-73.3-163.4-163.4-163.4S0,73.35,0,163.45s73.3,163.4,163.4,163.4c41.8,0,79.9-15.8,108.9-41.7l21.1,21.1l-15.9,15.9
+                                    c-1.7,1.7-2.7,4-2.7,6.4s1,4.7,2.7,6.4l141.9,141.9c5.6,5.6,13,8.7,20.9,8.7s15.3-3.1,20.9-8.7l15.7-15.7c5.6-5.6,8.7-13,8.7-20.9
+                                    s-3.1-15.3-8.7-20.9L335,277.55z M18.2,163.45c0-80.1,65.2-145.3,145.3-145.3s145.3,65.2,145.3,145.3s-65.2,145.3-145.3,145.3
+                                    S18.2,243.55,18.2,163.45z M464.1,448.45l-15.7,15.7c-2.2,2.2-5,3.4-8.1,3.4s-5.9-1.2-8.1-3.4l-135.5-135.5l31.9-31.9l135.5,135.5
+                                    c2.2,2.2,3.4,5,3.4,8.1S466.2,446.35,464.1,448.45z"/>
+                        </svg>
+                            <small class="input-message error">This field is required. Must be a valid User Id.</small>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label" for="id_name">Selected User</label>
+                        <input class="input-text" disabled type="text" name="id_name" id="id_name" maxlength="24">
+
+                    </div>
+                </div>
+                <div class="">
+
+                    <div class="input-group">
+                        <label class="input-label" for="date">Task Date</label>
+                        <input class="input-text" type="datetime-local" name="date" id="date">
+
+
+                    </div>
+                    <small class="input-message error">This field is required</small>
+                </div>
+                <div class="form-submit">
+                    <button class="btn" type="submit" id="submit">Submit</button>
+                </div>
+            </form>
+
+        </main>
+        <footer class="footer">
+
+        </footer>
+    </div>
+    <script src="../js/tasks/editTask.js" type="module"></script>
+</body>
+
+</html>
