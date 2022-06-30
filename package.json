@@ -5,6 +5,7 @@
     "main": "server.js",
     "type": "module",
     "scripts": {
+        "start": "node backend/server.js",
         "backend": "nodemon backend/server.js",
         "frontend": "concurrently \"lite-server\" \"npm:sass\" \"npm:ts\" ",
         "sass": "sass -w ./frontend/scss/style.scss:./frontend/public/css/style.css",
